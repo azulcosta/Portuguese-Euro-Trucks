@@ -1,0 +1,1243 @@
+﻿//define the grf
+grf {
+    grfid: "aC21";
+    //grfid: "GF\01\03";
+    name: string(STR_GRF_NAME);
+    desc: string(STR_GRF_DESC);
+    version: 08;
+    min_compatible_version: 08;
+}
+
+//Inserir codigo para desativar camioes padrão do jogo:
+//disable_item(FEAT_TRAINS, 1, 115);
+
+
+
+
+//*************************************A CORRIGIR ABAIXO**************************
+//disable_item(FEAT_ROADVEHS, 0, 6);
+
+
+//TALVEZ NAO SEJA PRECISO DUMMYS
+
+//----------------------- Dummy Tamanho 8 bits (transparent) ----------------------
+//----------------------- Textura invisivel para ser usada nos Dummys abaixo ------
+
+spriteset(spriteset_flatbed_invisible, "gfx/invisible.png") 
+//	left_x,   upper_y, width, height,  offset_x, offset_y
+{
+   	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+}
+
+//----------------------- SPECS do dummy 8 (dummy transparente a usar em veiculos)----------
+
+item(FEAT_ROADVEHS, dummy8) {
+    property {
+        climates_available:             NO_CLIMATE;
+        model_life:                     VEHICLE_NEVER_EXPIRES;
+        non_refittable_cargo_classes:   bitmask(); 
+        sprite_id:                      SPRITE_ID_NEW_ROADVEH;
+        power:                          0;
+        cargo_capacity:                 0;
+        weight:                         0;
+        length:                         8;	//Sempre comprimento maximo, se ficar no meio
+        visual_effect:		visual_effect (VISUAL_EFFECT_DISABLE, 0);
+			//VISUAL_EFFECT_ELECTRIC) VS VISUAL_EFFECT_DISABLE //
+    }
+    graphics {
+        default:                    spriteset_flatbed_invisible;
+    }
+}
+
+
+
+
+
+//********************************ACRESCENTAR ABAIXO***********
+cargotable {
+	COAL,
+	MAIL,
+	OIL_,
+	LVST,
+	GOOD,
+	GRAI,
+	WOOD,
+	IORE,
+	STEL,
+	VALU,
+	PAPR,
+	WHEA,
+	FOOD,
+	GOLD,
+	RUBR,
+	FRUT,
+	MAIZ,
+	CORE,
+	WATR, 	
+	DIAM,
+}
+
+
+
+
+
+
+
+
+//----------------------- 1917oil --------------------------------------------
+//----------------------- 1917oil BUS BUY DEPOSITO--------------------------------
+spriteset(spriteset_1917oil_buy, "gfx/invisible.png" ) {
+    [ 0,     0,       1,    1,     -1,      -1]
+}
+alternative_sprites(spriteset_1917oil_buy, ZOOM_LEVEL_NORMAL, BIT_DEPTH_32BPP) {
+    [-8,  -4, "gfx/1917oil/1917oil_buy.png", "gfx/1917oil/1917oil_buym.png"]
+}
+
+//----------------------- 1917oil 8 bits (transparent)-------------------------
+spriteset(spriteset_1917oil, "gfx/invisible.png") 
+//	left_x,   upper_y, width, height,  offset_x, offset_y
+{
+   	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+}
+alternative_sprites(spriteset_1917oil, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP) {
+	[-12,	-24,	"gfx/1917oil/1917oil1_z0.png", "gfx/1917oil/1917oil1_z0m.png"]	//23x36
+	[-25,	-7,  	"gfx/1917oil/1917oil2_z0.png", "gfx/1917oil/1917oil2_z0m.png"]	//55x37
+	[-19,	-10,  	"gfx/1917oil/1917oil3_z0.png", "gfx/1917oil/1917oil3_z0m.png"]	//59x30
+	[-8,	-10,  	"gfx/1917oil/1917oil4_z0.png", "gfx/1917oil/1917oil4_z0m.png"]	//54x46
+	[-12,	-19,  	"gfx/1917oil/1917oil5_z0.png", "gfx/1917oil/1917oil5_z0m.png"]	//23x46
+	[-50,	-12,  	"gfx/1917oil/1917oil6_z0.png", "gfx/1917oil/1917oil6_z0m.png"]	//54x46
+	[-38,	-15,  	"gfx/1917oil/1917oil7_z0.png", "gfx/1917oil/1917oil7_z0m.png"]	//58x30
+	[-18,	-13, 	"gfx/1917oil/1917oil8_z0.png", "gfx/1917oil/1917oil8_z0m.png"]	//52x37
+}
+spritegroup spritegroup_1917oil {
+    loading: spriteset_1917oil;
+    loaded: spriteset_1917oil;
+}
+
+
+
+
+
+
+//----------------------- 1917goods --------------------------------------------
+//----------------------- 1917goods BUS BUY DEPOSITO--------------------------------
+spriteset(spriteset_1917goods_buy, "gfx/invisible.png" ) {
+    [ 0,     0,       1,    1,     -1,      -1]
+}
+alternative_sprites(spriteset_1917goods_buy, ZOOM_LEVEL_NORMAL, BIT_DEPTH_32BPP) {
+    [-8,  -4, "gfx/1917goods/1917goods_buy.png", "gfx/1917goods/1917goods_buym.png"]
+}
+
+//----------------------- 1917goods 8 bits (transparent)-------------------------
+spriteset(spriteset_1917goods, "gfx/invisible.png") 
+//	left_x,   upper_y, width, height,  offset_x, offset_y
+{
+   	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+}
+alternative_sprites(spriteset_1917goods, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP) {
+	[-12,	-24,	"gfx/1917goods/1917goods1_z0.png", "gfx/1917goods/1917goods1_z0m.png"]	//23x36
+	[-25,	-7,  	"gfx/1917goods/1917goods2_z0.png", "gfx/1917goods/1917goods2_z0m.png"]	//55x37
+	[-19,	-10,  	"gfx/1917goods/1917goods3_z0.png", "gfx/1917goods/1917goods3_z0m.png"]	//59x30
+	[-8,	-10,  	"gfx/1917goods/1917goods4_z0.png", "gfx/1917goods/1917goods4_z0m.png"]	//54x46
+	[-12,	-19,  	"gfx/1917goods/1917goods5_z0.png", "gfx/1917goods/1917goods5_z0m.png"]	//23x46
+	[-50,	-12,  	"gfx/1917goods/1917goods6_z0.png", "gfx/1917goods/1917goods6_z0m.png"]	//54x46
+	[-38,	-15,  	"gfx/1917goods/1917goods7_z0.png", "gfx/1917goods/1917goods7_z0m.png"]	//58x30
+	[-18,	-13, 	"gfx/1917goods/1917goods8_z0.png", "gfx/1917goods/1917goods8_z0m.png"]	//52x37
+}
+spritegroup spritegroup_1917goods {
+    loading: spriteset_1917goods;
+    loaded: spriteset_1917goods;
+}
+
+
+
+
+
+//----------------------- 1917mail --------------------------------------------
+//----------------------- 1917mail BUS BUY DEPOSITO--------------------------------
+spriteset(spriteset_1917mail_buy, "gfx/invisible.png" ) {
+    [ 0,     0,       1,    1,     -1,      -1]
+}
+alternative_sprites(spriteset_1917mail_buy, ZOOM_LEVEL_NORMAL, BIT_DEPTH_32BPP) {
+    [-8,  -4, "gfx/1917mail/1917mail_buy.png", "gfx/1917mail/1917mail_buym.png"]
+}
+
+//----------------------- 1917mail 8 bits (transparent)-------------------------
+spriteset(spriteset_1917mail, "gfx/invisible.png") 
+//	left_x,   upper_y, width, height,  offset_x, offset_y
+{
+   	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+}
+alternative_sprites(spriteset_1917mail, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP) {
+	[-12,	-24,	"gfx/1917mail/1917mail1_z0.png", "gfx/1917mail/1917mail1_z0m.png"]	//23x36
+	[-25,	-7,  	"gfx/1917mail/1917mail2_z0.png", "gfx/1917mail/1917mail2_z0m.png"]	//55x37
+	[-19,	-10,  	"gfx/1917mail/1917mail3_z0.png", "gfx/1917mail/1917mail3_z0m.png"]	//59x30
+	[-8,	-10,  	"gfx/1917mail/1917mail4_z0.png", "gfx/1917mail/1917mail4_z0m.png"]	//54x46
+	[-12,	-19,  	"gfx/1917mail/1917mail5_z0.png", "gfx/1917mail/1917mail5_z0m.png"]	//23x46
+	[-50,	-12,  	"gfx/1917mail/1917mail6_z0.png", "gfx/1917mail/1917mail6_z0m.png"]	//54x46
+	[-38,	-15,  	"gfx/1917mail/1917mail7_z0.png", "gfx/1917mail/1917mail7_z0m.png"]	//58x30
+	[-18,	-13, 	"gfx/1917mail/1917mail8_z0.png", "gfx/1917mail/1917mail8_z0m.png"]	//52x37
+}
+spritegroup spritegroup_1917mail {
+    loading: spriteset_1917mail;
+    loaded: spriteset_1917mail;
+}
+
+
+
+
+
+
+//----------------------- 1917values --------------------------------------------
+//----------------------- 1917values BUS BUY DEPOSITO--------------------------------
+spriteset(spriteset_1917values_buy, "gfx/invisible.png" ) {
+    [ 0,     0,       1,    1,     -1,      -1]
+}
+alternative_sprites(spriteset_1917values_buy, ZOOM_LEVEL_NORMAL, BIT_DEPTH_32BPP) {
+    [-8,  -4, "gfx/1917values/1917values_buy.png", "gfx/1917values/1917values_buym.png"]
+}
+
+//----------------------- 1917values 8 bits (transparent)-------------------------
+spriteset(spriteset_1917values, "gfx/invisible.png") 
+//	left_x,   upper_y, width, height,  offset_x, offset_y
+{
+   	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+}
+alternative_sprites(spriteset_1917values, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP) {
+	[-12,	-24,	"gfx/1917values/1917values1_z0.png", "gfx/1917values/1917values1_z0m.png"]	//23x36
+	[-25,	-7,  	"gfx/1917values/1917values2_z0.png", "gfx/1917values/1917values2_z0m.png"]	//55x37
+	[-19,	-10,  	"gfx/1917values/1917values3_z0.png", "gfx/1917values/1917values3_z0m.png"]	//59x30
+	[-8,	-10,  	"gfx/1917values/1917values4_z0.png", "gfx/1917values/1917values4_z0m.png"]	//54x46
+	[-12,	-19,  	"gfx/1917values/1917values5_z0.png", "gfx/1917values/1917values5_z0m.png"]	//23x46
+	[-50,	-12,  	"gfx/1917values/1917values6_z0.png", "gfx/1917values/1917values6_z0m.png"]	//54x46
+	[-38,	-15,  	"gfx/1917values/1917values7_z0.png", "gfx/1917values/1917values7_z0m.png"]	//58x30
+	[-18,	-13, 	"gfx/1917values/1917values8_z0.png", "gfx/1917values/1917values8_z0m.png"]	//52x37
+}
+spritegroup spritegroup_1917values {
+    loading: spriteset_1917values;
+    loaded: spriteset_1917values;
+}
+
+
+
+
+
+
+
+
+//----------------------- 1917live --------------------------------------------
+//----------------------- 1917live BUS BUY DEPOSITO--------------------------------
+spriteset(spriteset_1917liveE_buy, "gfx/invisible.png" ) {
+    [ 0,     0,       1,    1,     -1,      -1]
+}
+alternative_sprites(spriteset_1917liveE_buy, ZOOM_LEVEL_NORMAL, BIT_DEPTH_32BPP) {
+    [-8,  -4, "gfx/1917live/1917liveE_buy.png", "gfx/1917live/1917liveE_buym.png"]
+}
+
+//----------------------- 1917liveE 8 bits (transparent)-------------------------
+spriteset(spriteset_1917liveE, "gfx/invisible.png") 
+//	left_x,   upper_y, width, height,  offset_x, offset_y
+{
+   	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+}
+alternative_sprites(spriteset_1917liveE, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP) {
+	[-12,	-24,	"gfx/1917live/1917liveE1_z0.png", "gfx/1917live/1917liveE1_z0m.png"]	//23x36
+	[-25,	-7,  	"gfx/1917live/1917liveE2_z0.png", "gfx/1917live/1917liveE2_z0m.png"]	//55x37
+	[-19,	-10,  	"gfx/1917live/1917liveE3_z0.png", "gfx/1917live/1917liveE3_z0m.png"]	//59x30
+	[-8,	-10,  	"gfx/1917live/1917liveE4_z0.png", "gfx/1917live/1917liveE4_z0m.png"]	//54x46
+	[-12,	-19,  	"gfx/1917live/1917liveE5_z0.png", "gfx/1917live/1917liveE5_z0m.png"]	//23x46
+	[-50,	-12,  	"gfx/1917live/1917liveE6_z0.png", "gfx/1917live/1917liveE6_z0m.png"]	//54x46
+	[-38,	-15,  	"gfx/1917live/1917liveE7_z0.png", "gfx/1917live/1917liveE7_z0m.png"]	//58x30
+	[-18,	-13, 	"gfx/1917live/1917liveE8_z0.png", "gfx/1917live/1917liveE8_z0m.png"]	//52x37
+}
+
+
+//----------------------- 1917LIVE LOADED 8 bits (transparent)-------------------------
+spriteset(spriteset_1917liveL, "gfx/invisible.png") 
+//	left_x,   upper_y, width, height,  offset_x, offset_y
+{
+   	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+}
+alternative_sprites(spriteset_1917liveL, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP) {
+	[-12,	-24,	"gfx/1917live/1917liveL1_z0.png", "gfx/1917live/1917liveE1_z0m.png"]	//23x36
+	[-25,	-7,  	"gfx/1917live/1917liveL2_z0.png", "gfx/1917live/1917liveE2_z0m.png"]	//55x37
+	[-19,	-10,  	"gfx/1917live/1917liveL3_z0.png", "gfx/1917live/1917liveL3_z0m.png"]	//59x30
+	[-8,	-10,  	"gfx/1917live/1917liveL4_z0.png", "gfx/1917live/1917liveE4_z0m.png"]	//54x46
+	[-12,	-19,  	"gfx/1917live/1917liveL5_z0.png", "gfx/1917live/1917liveE5_z0m.png"]	//23x46
+	[-50,	-12,  	"gfx/1917live/1917liveL6_z0.png", "gfx/1917live/1917liveE6_z0m.png"]	//54x46
+	[-38,	-15,  	"gfx/1917live/1917liveL7_z0.png", "gfx/1917live/1917liveE7_z0m.png"]	//58x30
+	[-18,	-13, 	"gfx/1917live/1917liveL8_z0.png", "gfx/1917live/1917liveE8_z0m.png"]	//52x37
+}
+
+
+spritegroup spritegroup_1917live {
+    loading: spriteset_1917liveE;
+    loaded: [spriteset_1917liveE, spriteset_1917liveL];
+}
+
+
+
+
+
+
+
+
+//----------------------- 1917steel --------------------------------------------
+//----------------------- 1917steel BUS BUY DEPOSITO--------------------------------
+spriteset(spriteset_1917steelE_buy, "gfx/invisible.png" ) {
+    [ 0,     0,       1,    1,     -1,      -1]
+}
+alternative_sprites(spriteset_1917steelE_buy, ZOOM_LEVEL_NORMAL, BIT_DEPTH_32BPP) {
+    [-8,  -4, "gfx/1917steel/1917steelE_buy.png", "gfx/1917steel/1917steelE_buym.png"]
+}
+
+//----------------------- 1917steelE 8 bits (transparent)-------------------------
+spriteset(spriteset_1917steelE, "gfx/invisible.png") 
+//	left_x,   upper_y, width, height,  offset_x, offset_y
+{
+   	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+}
+alternative_sprites(spriteset_1917steelE, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP) {
+	[-12,	-24,	"gfx/1917steel/1917steelE1_z0.png", "gfx/1917steel/1917steelE1_z0m.png"]	//23x36
+	[-25,	-7,  	"gfx/1917steel/1917steelE2_z0.png", "gfx/1917steel/1917steelE2_z0m.png"]	//55x37
+	[-19,	-10,  	"gfx/1917steel/1917steelE3_z0.png", "gfx/1917steel/1917steelE3_z0m.png"]	//59x30
+	[-8,	-10,  	"gfx/1917steel/1917steelE4_z0.png", "gfx/1917steel/1917steelE4_z0m.png"]	//54x46
+	[-12,	-19,  	"gfx/1917steel/1917steelE5_z0.png", "gfx/1917steel/1917steelE5_z0m.png"]	//23x46
+	[-50,	-12,  	"gfx/1917steel/1917steelE6_z0.png", "gfx/1917steel/1917steelE6_z0m.png"]	//54x46
+	[-38,	-15,  	"gfx/1917steel/1917steelE7_z0.png", "gfx/1917steel/1917steelE7_z0m.png"]	//58x30
+	[-18,	-13, 	"gfx/1917steel/1917steelE8_z0.png", "gfx/1917steel/1917steelE8_z0m.png"]	//52x37
+}
+
+
+//----------------------- 1917steel LOADED 8 bits (transparent)-------------------------
+spriteset(spriteset_1917steelL, "gfx/invisible.png") 
+//	left_x,   upper_y, width, height,  offset_x, offset_y
+{
+   	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+}
+alternative_sprites(spriteset_1917steelL, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP) {
+	[-12,	-24,	"gfx/1917steel/1917steelL1_z0.png", "gfx/1917steel/1917steelE1_z0m.png"]	//23x36
+	[-25,	-7,  	"gfx/1917steel/1917steelL2_z0.png", "gfx/1917steel/1917steelL2_z0m.png"]	//55x37
+	[-19,	-10,  	"gfx/1917steel/1917steelL3_z0.png", "gfx/1917steel/1917steelE3_z0m.png"]	//59x30
+	[-8,	-10,  	"gfx/1917steel/1917steelL4_z0.png", "gfx/1917steel/1917steelL4_z0m.png"]	//54x46
+	[-12,	-19,  	"gfx/1917steel/1917steelL5_z0.png", "gfx/1917steel/1917steelL5_z0m.png"]	//23x46
+	[-50,	-12,  	"gfx/1917steel/1917steelL6_z0.png", "gfx/1917steel/1917steelL6_z0m.png"]	//54x46
+	[-38,	-15,  	"gfx/1917steel/1917steelL7_z0.png", "gfx/1917steel/1917steelE7_z0m.png"]	//58x30
+	[-18,	-13, 	"gfx/1917steel/1917steelL8_z0.png", "gfx/1917steel/1917steelE8_z0m.png"]	//52x37
+}
+
+
+spritegroup spritegroup_1917steel {
+    loading: spriteset_1917steelE;
+    loaded: [spriteset_1917steelE, spriteset_1917steelL];
+}
+
+
+
+
+
+
+
+
+
+//----------------------- 1917wood --------------------------------------------
+//----------------------- 1917wood BUS BUY DEPOSITO--------------------------------
+spriteset(spriteset_1917woodE_buy, "gfx/invisible.png" ) {
+    [ 0,     0,       1,    1,     -1,      -1]
+}
+alternative_sprites(spriteset_1917woodE_buy, ZOOM_LEVEL_NORMAL, BIT_DEPTH_32BPP) {
+    [-8,  -4, "gfx/1917wood/1917woodE_buy.png", "gfx/1917wood/1917woodE_buym.png"]
+}
+
+//----------------------- 1917woodE 8 bits (transparent)-------------------------
+spriteset(spriteset_1917woodE, "gfx/invisible.png") 
+//	left_x,   upper_y, width, height,  offset_x, offset_y
+{
+   	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+}
+alternative_sprites(spriteset_1917woodE, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP) {
+	[-12,	-24,	"gfx/1917wood/1917woodE1_z0.png", "gfx/1917wood/1917woodE1_z0m.png"]	//23x36
+	[-25,	-7,  	"gfx/1917wood/1917woodE2_z0.png", "gfx/1917wood/1917woodE2_z0m.png"]	//55x37
+	[-19,	-10,  	"gfx/1917wood/1917woodE3_z0.png", "gfx/1917wood/1917woodE3_z0m.png"]	//59x30
+	[-8,	-10,  	"gfx/1917wood/1917woodE4_z0.png", "gfx/1917wood/1917woodE4_z0m.png"]	//54x46
+	[-12,	-19,  	"gfx/1917wood/1917woodE5_z0.png", "gfx/1917wood/1917woodE5_z0m.png"]	//23x46
+	[-50,	-12,  	"gfx/1917wood/1917woodE6_z0.png", "gfx/1917wood/1917woodE6_z0m.png"]	//54x46
+	[-38,	-15,  	"gfx/1917wood/1917woodE7_z0.png", "gfx/1917wood/1917woodE7_z0m.png"]	//58x30
+	[-18,	-13, 	"gfx/1917wood/1917woodE8_z0.png", "gfx/1917wood/1917woodE8_z0m.png"]	//52x37
+}
+
+
+//----------------------- 1917wood LOADED 8 bits (transparent)-------------------------
+spriteset(spriteset_1917woodL, "gfx/invisible.png") 
+//	left_x,   upper_y, width, height,  offset_x, offset_y
+{
+   	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+}
+alternative_sprites(spriteset_1917woodL, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP) {
+	[-12,	-24,	"gfx/1917wood/1917woodL1_z0.png", "gfx/1917wood/1917woodE1_z0m.png"]	//23x36
+	[-25,	-7,  	"gfx/1917wood/1917woodL2_z0.png", "gfx/1917wood/1917woodE2_z0m.png"]	//55x37
+	[-19,	-10,  	"gfx/1917wood/1917woodL3_z0.png", "gfx/1917wood/1917woodE3_z0m.png"]	//59x30
+	[-8,	-10,  	"gfx/1917wood/1917woodL4_z0.png", "gfx/1917wood/1917woodE4_z0m.png"]	//54x46
+	[-12,	-19,  	"gfx/1917wood/1917woodL5_z0.png", "gfx/1917wood/1917woodL5_z0m.png"]	//23x46
+	[-50,	-12,  	"gfx/1917wood/1917woodL6_z0.png", "gfx/1917wood/1917woodE6_z0m.png"]	//54x46
+	[-38,	-15,  	"gfx/1917wood/1917woodL7_z0.png", "gfx/1917wood/1917woodE7_z0m.png"]	//58x30
+	[-18,	-13, 	"gfx/1917wood/1917woodL8_z0.png", "gfx/1917wood/1917woodE8_z0m.png"]	//52x37
+}
+
+
+spritegroup spritegroup_1917wood {
+    loading: spriteset_1917woodE;
+    loaded: [spriteset_1917woodE, spriteset_1917woodL];
+}
+
+
+
+
+
+
+
+
+//----------------------- 1917coal --------------------------------------------
+//----------------------- 1917coal BUS BUY DEPOSITO--------------------------------
+spriteset(spriteset_1917coalE_buy, "gfx/invisible.png" ) {
+    [ 0,     0,       1,    1,     -1,      -1]
+}
+alternative_sprites(spriteset_1917coalE_buy, ZOOM_LEVEL_NORMAL, BIT_DEPTH_32BPP) {
+    [-8,  -4, "gfx/1917coal/1917coalE_buy.png", "gfx/1917coal/1917coalE_buym.png"]
+}
+
+//----------------------- 1917coalE 8 bits (transparent)-------------------------
+spriteset(spriteset_1917coalE, "gfx/invisible.png") 
+//	left_x,   upper_y, width, height,  offset_x, offset_y
+{
+   	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+}
+alternative_sprites(spriteset_1917coalE, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP) {
+	[-12,	-24,	"gfx/1917coal/1917coalE1_z0.png", "gfx/1917coal/1917coalE1_z0m.png"]	//23x36
+	[-25,	-7,  	"gfx/1917coal/1917coalE2_z0.png", "gfx/1917coal/1917coalE2_z0m.png"]	//55x37
+	[-19,	-10,  	"gfx/1917coal/1917coalE3_z0.png", "gfx/1917coal/1917coalE3_z0m.png"]	//59x30
+	[-8,	-10,  	"gfx/1917coal/1917coalE4_z0.png", "gfx/1917coal/1917coalE4_z0m.png"]	//54x46
+	[-12,	-19,  	"gfx/1917coal/1917coalE5_z0.png", "gfx/1917coal/1917coalE5_z0m.png"]	//23x46
+	[-50,	-12,  	"gfx/1917coal/1917coalE6_z0.png", "gfx/1917coal/1917coalE6_z0m.png"]	//54x46
+	[-38,	-15,  	"gfx/1917coal/1917coalE7_z0.png", "gfx/1917coal/1917coalE7_z0m.png"]	//58x30
+	[-18,	-13, 	"gfx/1917coal/1917coalE8_z0.png", "gfx/1917coal/1917coalE8_z0m.png"]	//52x37
+}
+
+
+//----------------------- 1917coal LOADED 8 bits (transparent)-------------------------
+spriteset(spriteset_1917coalL, "gfx/invisible.png") 
+//	left_x,   upper_y, width, height,  offset_x, offset_y
+{
+   	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+}
+alternative_sprites(spriteset_1917coalL, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP) {
+	[-12,	-24,	"gfx/1917coal/1917coalL1_z0.png", "gfx/1917coal/1917coalE1_z0m.png"]	//23x36
+	[-25,	-7,  	"gfx/1917coal/1917coalL2_z0.png", "gfx/1917coal/1917coalE2_z0m.png"]	//55x37
+	[-19,	-10,  	"gfx/1917coal/1917coalL3_z0.png", "gfx/1917coal/1917coalE3_z0m.png"]	//59x30
+	[-8,	-10,  	"gfx/1917coal/1917coalL4_z0.png", "gfx/1917coal/1917coalE4_z0m.png"]	//54x46
+	[-12,	-19,  	"gfx/1917coal/1917coalL5_z0.png", "gfx/1917coal/1917coalE5_z0m.png"]	//23x46
+	[-50,	-12,  	"gfx/1917coal/1917coalL6_z0.png", "gfx/1917coal/1917coalE6_z0m.png"]	//54x46
+	[-38,	-15,  	"gfx/1917coal/1917coalL7_z0.png", "gfx/1917coal/1917coalE7_z0m.png"]	//58x30
+	[-18,	-13, 	"gfx/1917coal/1917coalL8_z0.png", "gfx/1917coal/1917coalE8_z0m.png"]	//52x37
+}
+
+
+spritegroup spritegroup_1917coal {
+    loading: spriteset_1917coalE;
+    loaded: [spriteset_1917coalE, spriteset_1917coalL];
+}
+
+
+
+
+
+
+
+
+//----------------------- 1917iron --------------------------------------------
+//----------------------- 1917iron BUS BUY DEPOSITO--------------------------------
+spriteset(spriteset_1917ironE_buy, "gfx/invisible.png" ) {
+    [ 0,     0,       1,    1,     -1,      -1]
+}
+alternative_sprites(spriteset_1917ironE_buy, ZOOM_LEVEL_NORMAL, BIT_DEPTH_32BPP) {
+    [-8,  -4, "gfx/1917iron/1917ironE_buy.png", "gfx/1917coal/1917coalE_buym.png"]
+}
+
+//----------------------- 1917ironE 8 bits (transparent)-------------------------
+spriteset(spriteset_1917ironE, "gfx/invisible.png") 
+//	left_x,   upper_y, width, height,  offset_x, offset_y
+{
+   	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+}
+alternative_sprites(spriteset_1917ironE, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP) {
+	[-12,	-24,	"gfx/1917iron/1917ironE1_z0.png", "gfx/1917coal/1917coalE1_z0m.png"]	//23x36
+	[-25,	-7,  	"gfx/1917iron/1917ironE2_z0.png", "gfx/1917coal/1917coalE2_z0m.png"]	//55x37
+	[-19,	-10,  	"gfx/1917iron/1917ironE3_z0.png", "gfx/1917coal/1917coalE3_z0m.png"]	//59x30
+	[-8,	-10,  	"gfx/1917iron/1917ironE4_z0.png", "gfx/1917coal/1917coalE4_z0m.png"]	//54x46
+	[-12,	-19,  	"gfx/1917iron/1917ironE5_z0.png", "gfx/1917coal/1917coalE5_z0m.png"]	//23x46
+	[-50,	-12,  	"gfx/1917iron/1917ironE6_z0.png", "gfx/1917coal/1917coalE6_z0m.png"]	//54x46
+	[-38,	-15,  	"gfx/1917iron/1917ironE7_z0.png", "gfx/1917coal/1917coalE7_z0m.png"]	//58x30
+	[-18,	-13, 	"gfx/1917iron/1917ironE8_z0.png", "gfx/1917coal/1917coalE8_z0m.png"]	//52x37
+}
+
+
+//----------------------- 1917iron LOADED 8 bits (transparent)-------------------------
+spriteset(spriteset_1917ironL, "gfx/invisible.png") 
+//	left_x,   upper_y, width, height,  offset_x, offset_y
+{
+   	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+}
+alternative_sprites(spriteset_1917ironL, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP) {
+	[-12,	-24,	"gfx/1917iron/1917ironL1_z0.png", "gfx/1917coal/1917coalE1_z0m.png"]	//23x36
+	[-25,	-7,  	"gfx/1917iron/1917ironL2_z0.png", "gfx/1917coal/1917coalE2_z0m.png"]	//55x37
+	[-19,	-10,  	"gfx/1917iron/1917ironL3_z0.png", "gfx/1917coal/1917coalE3_z0m.png"]	//59x30
+	[-8,	-10,  	"gfx/1917iron/1917ironL4_z0.png", "gfx/1917coal/1917coalE4_z0m.png"]	//54x46
+	[-12,	-19,  	"gfx/1917iron/1917ironL5_z0.png", "gfx/1917coal/1917coalE5_z0m.png"]	//23x46
+	[-50,	-12,  	"gfx/1917iron/1917ironL6_z0.png", "gfx/1917coal/1917coalE6_z0m.png"]	//54x46
+	[-38,	-15,  	"gfx/1917iron/1917ironL7_z0.png", "gfx/1917coal/1917coalE7_z0m.png"]	//58x30
+	[-18,	-13, 	"gfx/1917iron/1917ironL8_z0.png", "gfx/1917coal/1917coalE8_z0m.png"]	//52x37
+}
+
+
+spritegroup spritegroup_1917iron {
+    loading: spriteset_1917ironE;
+    loaded: [spriteset_1917ironE, spriteset_1917ironL];
+}
+
+
+
+
+//----------------------- 1917grain --------------------------------------------
+//----------------------- 1917grain BUS BUY DEPOSITO--------------------------------
+spriteset(spriteset_1917grainE_buy, "gfx/invisible.png" ) {
+    [ 0,     0,       1,    1,     -1,      -1]
+}
+alternative_sprites(spriteset_1917grainE_buy, ZOOM_LEVEL_NORMAL, BIT_DEPTH_32BPP) {
+    [-8,  -4, "gfx/1917grain/1917grainE_buy.png", "gfx/1917coal/1917coalE_buym.png"]
+}
+
+//----------------------- 1917grainE 8 bits (transparent)-------------------------
+spriteset(spriteset_1917grainE, "gfx/invisible.png") 
+//	left_x,   upper_y, width, height,  offset_x, offset_y
+{
+   	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+}
+alternative_sprites(spriteset_1917grainE, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP) {
+	[-12,	-24,	"gfx/1917grain/1917grainE1_z0.png", "gfx/1917coal/1917coalE1_z0m.png"]	//23x36
+	[-25,	-7,  	"gfx/1917grain/1917grainE2_z0.png", "gfx/1917coal/1917coalE2_z0m.png"]	//55x37
+	[-19,	-10,  	"gfx/1917grain/1917grainE3_z0.png", "gfx/1917coal/1917coalE3_z0m.png"]	//59x30
+	[-8,	-10,  	"gfx/1917grain/1917grainE4_z0.png", "gfx/1917coal/1917coalE4_z0m.png"]	//54x46
+	[-12,	-19,  	"gfx/1917grain/1917grainE5_z0.png", "gfx/1917coal/1917coalE5_z0m.png"]	//23x46
+	[-50,	-12,  	"gfx/1917grain/1917grainE6_z0.png", "gfx/1917coal/1917coalE6_z0m.png"]	//54x46
+	[-38,	-15,  	"gfx/1917grain/1917grainE7_z0.png", "gfx/1917coal/1917coalE7_z0m.png"]	//58x30
+	[-18,	-13, 	"gfx/1917grain/1917grainE8_z0.png", "gfx/1917coal/1917coalE8_z0m.png"]	//52x37
+}
+
+
+//----------------------- 1917grain LOADED 8 bits (transparent)-------------------------
+spriteset(spriteset_1917grainL, "gfx/invisible.png") 
+//	left_x,   upper_y, width, height,  offset_x, offset_y
+{
+   	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+    	[ 0,      0,       1,     1,       -1,       -1]
+}
+alternative_sprites(spriteset_1917grainL, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP) {
+	[-12,	-24,	"gfx/1917grain/1917grainL1_z0.png", "gfx/1917coal/1917coalE1_z0m.png"]	//23x36
+	[-25,	-7,  	"gfx/1917grain/1917grainL2_z0.png", "gfx/1917coal/1917coalE2_z0m.png"]	//55x37
+	[-19,	-10,  	"gfx/1917grain/1917grainL3_z0.png", "gfx/1917coal/1917coalE3_z0m.png"]	//59x30
+	[-8,	-10,  	"gfx/1917grain/1917grainL4_z0.png", "gfx/1917coal/1917coalE4_z0m.png"]	//54x46
+	[-12,	-19,  	"gfx/1917grain/1917grainL5_z0.png", "gfx/1917coal/1917coalE5_z0m.png"]	//23x46
+	[-50,	-12,  	"gfx/1917grain/1917grainL6_z0.png", "gfx/1917coal/1917coalE6_z0m.png"]	//54x46
+	[-38,	-15,  	"gfx/1917grain/1917grainL7_z0.png", "gfx/1917coal/1917coalE7_z0m.png"]	//58x30
+	[-18,	-13, 	"gfx/1917grain/1917grainL8_z0.png", "gfx/1917coal/1917coalE8_z0m.png"]	//52x37
+}
+
+
+spritegroup spritegroup_1917grain {
+    loading: spriteset_1917grainE;
+    loaded: [spriteset_1917grainE, spriteset_1917grainL];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//----------------------------------------------- 1917 OIL  -----------------------------------------
+
+item(FEAT_ROADVEHS, oil_1917) {
+    property {
+
+	name:				string(STR_GRF_NAME_1917OIL);
+	climates_available:             bitmask(CLIMATE_TEMPERATE, CLIMATE_ARCTIC, CLIMATE_TROPICAL);
+        introduction_date:              date(1917,01,01);
+        model_life:                     15;
+        vehicle_life:                   30;
+
+        reliability_decay:              20;
+
+        loading_speed:                  5;
+        cost_factor:                    98;	//70;
+        running_cost_factor:            45;	//40;
+
+        sprite_id:			SPRITE_ID_NEW_ROADVEH;
+        speed:                          25 km/h;
+        misc_flags:                     bitmask(ROADVEH_FLAG_2CC);
+        refit_cost:                     0;
+        power:                          20 hp;
+        running_cost_base:              RUNNING_COST_ROADVEH;
+        weight:                         1.0 ton;
+
+	//engine_class:                   ENGINE_CLASS_ELECTRIC;
+	tractive_effort_coefficient:    0.3;
+	air_drag_coefficient:		0.32;
+	length:				5;
+	visual_effect:			visual_effect (VISUAL_EFFECT_DISABLE, 0);
+	sound_effect:                   SOUND_TRUCK_START;
+	default_cargo_type:		OIL_;
+
+	//refittable_cargo_classes:       bitmask(CC_PASSENGERS);
+	//refittable_cargo_classes:       bitmask(CC_BULK);
+	
+	refittable_cargo_classes:       bitmask(CC_LIQUID);
+	cargo_allow_refit:		[RUBR, WATR];
+
+	//cargo_disallow_refit:		IORE, GRAI;
+
+	cargo_capacity:			1;
+
+	}
+    graphics {
+        default: 		 	spritegroup_1917oil;
+	//articulated_part:             	switch_cpUaoos_articulated;
+	purchase:                     	spriteset_1917oil_buy;
+	//speed:				cargo_amount_switch;
+    }
+}
+
+
+
+//----------------------------------------------- 1917 GOODS  -----------------------------------------
+item(FEAT_ROADVEHS, goods_1917) {
+    property {
+
+	name:				string(STR_GRF_NAME_1917GOODS);
+	climates_available:             bitmask(CLIMATE_TEMPERATE, CLIMATE_ARCTIC, CLIMATE_TROPICAL);
+        introduction_date:              date(1917,01,01);
+        model_life:                     15;
+        vehicle_life:                   30;
+
+        reliability_decay:              20;
+
+        loading_speed:                  5;
+        cost_factor:                    98;	//70;
+        running_cost_factor:            45;	//40;
+
+        sprite_id:			SPRITE_ID_NEW_ROADVEH;
+        speed:                          25 km/h;
+        misc_flags:                     bitmask(ROADVEH_FLAG_2CC);
+        refit_cost:                     0;
+        power:                          20 hp;
+        running_cost_base:              RUNNING_COST_ROADVEH;
+        weight:                         1.0 ton;
+
+	//engine_class:                   ENGINE_CLASS_ELECTRIC;
+	tractive_effort_coefficient:    0.3;
+	air_drag_coefficient:		0.32;
+	length:				5;
+	visual_effect:			visual_effect (VISUAL_EFFECT_DISABLE, 0);
+	sound_effect:                   SOUND_TRUCK_START;
+	default_cargo_type:		GOOD;
+
+	//refittable_cargo_classes:       bitmask(CC_PASSENGERS);
+	//refittable_cargo_classes:       bitmask(CC_BULK);
+	//refittable_cargo_classes:       bitmask(CC_LIQUID);
+
+	cargo_allow_refit:		[FOOD, FRUT];
+	//cargo_disallow_refit:		IORE, GRAI,
+
+	cargo_capacity:			3;
+
+	}
+    graphics {
+        default: 		 	spritegroup_1917goods;
+	//articulated_part:             	switch_cpUaoos_articulated;
+	purchase:                     	spriteset_1917goods_buy;
+	//speed:				cargo_amount_switch;
+    }
+}
+
+
+
+//----------------------------------------------- 1917 MAIL  -----------------------------------------
+item(FEAT_ROADVEHS, mail_1917) {
+    property {
+
+	name:				string(STR_GRF_NAME_1917MAIL);
+	climates_available:             bitmask(CLIMATE_TEMPERATE, CLIMATE_ARCTIC, CLIMATE_TROPICAL);
+        introduction_date:              date(1917,01,01);
+        model_life:                     15;
+        vehicle_life:                   30;
+
+        reliability_decay:              20;
+
+        loading_speed:                  5;
+        cost_factor:                    98;	//70;
+        running_cost_factor:            45;	//40;
+
+        sprite_id:			SPRITE_ID_NEW_ROADVEH;
+        speed:                          25 km/h;
+        misc_flags:                     bitmask(ROADVEH_FLAG_2CC);
+        refit_cost:                     0;
+        power:                          20 hp;
+        running_cost_base:              RUNNING_COST_ROADVEH;
+        weight:                         1.0 ton;
+
+	//engine_class:                   ENGINE_CLASS_ELECTRIC;
+	tractive_effort_coefficient:    0.3;
+	air_drag_coefficient:		0.32;
+	length:				5;
+	visual_effect:			visual_effect (VISUAL_EFFECT_DISABLE, 0);
+	sound_effect:                   SOUND_TRUCK_START;
+	default_cargo_type:		MAIL;
+
+	//refittable_cargo_classes:       bitmask(CC_PASSENGERS);
+	//refittable_cargo_classes:       bitmask(CC_BULK);
+	//refittable_cargo_classes:       bitmask(CC_LIQUID);
+
+	//cargo_allow_refit:		FOOD, FRUT;
+	//cargo_disallow_refit:		IORE, GRAI,
+
+	cargo_capacity:			4;
+
+	}
+    graphics {
+        default: 		 	spritegroup_1917mail;
+	//articulated_part:             	switch_cpUaoos_articulated;
+	purchase:                     	spriteset_1917mail_buy;
+	//speed:				cargo_amount_switch;
+    }
+}
+
+
+
+//----------------------------------------------- 1917 VALUES  -----------------------------------------
+item(FEAT_ROADVEHS, values_1917) {
+    property {
+
+	name:				string(STR_GRF_NAME_1917VALUES);
+	climates_available:             bitmask(CLIMATE_TEMPERATE, CLIMATE_ARCTIC, CLIMATE_TROPICAL);
+        introduction_date:              date(1917,01,01);
+        model_life:                     15;
+        vehicle_life:                   30;
+
+        reliability_decay:              20;
+
+        loading_speed:                  5;
+        cost_factor:                    98;	//70;
+        running_cost_factor:            45;	//40;
+
+        sprite_id:			SPRITE_ID_NEW_ROADVEH;
+        speed:                          25 km/h;
+        misc_flags:                     bitmask(ROADVEH_FLAG_2CC);
+        refit_cost:                     0;
+        power:                          20 hp;
+        running_cost_base:              RUNNING_COST_ROADVEH;
+        weight:                         1.0 ton;
+
+	//engine_class:                   ENGINE_CLASS_ELECTRIC;
+	tractive_effort_coefficient:    0.3;
+	air_drag_coefficient:		0.32;
+	length:				5;
+	visual_effect:			visual_effect (VISUAL_EFFECT_DISABLE, 0);
+	sound_effect:                   SOUND_TRUCK_START;
+	default_cargo_type:		VALU;
+
+	refittable_cargo_classes:       bitmask(CC_ARMOURED);
+	//refittable_cargo_classes:       bitmask(CC_BULK);
+	//refittable_cargo_classes:       bitmask(CC_LIQUID);
+
+	cargo_allow_refit:		[GOLD, DIAM];
+	//cargo_disallow_refit:		IORE, GRAI,
+
+	cargo_capacity:			3;
+
+	}
+    graphics {
+        default: 		 	spritegroup_1917values;
+	//articulated_part:             	switch_cpUaoos_articulated;
+	purchase:                     	spriteset_1917values_buy;
+	//speed:				cargo_amount_switch;
+    }
+}
+
+
+
+
+//----------------------------------------------- 1917 LIVE  -----------------------------------------
+item(FEAT_ROADVEHS, live_1917) {
+    property {
+
+	name:				string(STR_GRF_NAME_1917LIVE);
+	climates_available:             bitmask(CLIMATE_TEMPERATE, CLIMATE_ARCTIC, CLIMATE_TROPICAL);
+        introduction_date:              date(1917,01,01);
+        model_life:                     15;
+        vehicle_life:                   30;
+
+        reliability_decay:              20;
+
+        loading_speed:                  5;
+        cost_factor:                    98;	//70;
+        running_cost_factor:            45;	//40;
+
+        sprite_id:			SPRITE_ID_NEW_ROADVEH;
+        speed:                          25 km/h;
+        misc_flags:                     bitmask(ROADVEH_FLAG_2CC);
+        refit_cost:                     0;
+        power:                          20 hp;
+        running_cost_base:              RUNNING_COST_ROADVEH;
+        weight:                         1.0 ton;
+
+	//engine_class:                   ENGINE_CLASS_ELECTRIC;
+	tractive_effort_coefficient:    0.3;
+	air_drag_coefficient:		0.32;
+	length:				5;
+	visual_effect:			visual_effect (VISUAL_EFFECT_DISABLE, 0);
+	sound_effect:                   SOUND_TRUCK_START;
+	default_cargo_type:		LVST;
+
+	//refittable_cargo_classes:       bitmask(CC_PASSENGERS);
+	//refittable_cargo_classes:       bitmask(CC_BULK);
+	//refittable_cargo_classes:       bitmask(CC_LIQUID);
+
+	//cargo_allow_refit:		FOOD, FRUT;
+	//cargo_disallow_refit:		IORE, GRAI,
+
+	cargo_capacity:			3;
+
+	}
+    graphics {
+        default: 		 	spritegroup_1917live;
+	//articulated_part:             	switch_cpUaoos_articulated;
+	purchase:                     	spriteset_1917liveE_buy;
+	//speed:				cargo_amount_switch;
+    }
+}
+
+
+
+
+
+
+
+
+//----------------------------------------------- 1917 STEEL  -----------------------------------------
+item(FEAT_ROADVEHS, steel_1917) {
+    property {
+
+	name:				string(STR_GRF_NAME_1917STEEL);
+	climates_available:             bitmask(CLIMATE_TEMPERATE, CLIMATE_ARCTIC, CLIMATE_TROPICAL);
+        introduction_date:              date(1917,01,01);
+        model_life:                     15;
+        vehicle_life:                   30;
+
+        reliability_decay:              20;
+
+        loading_speed:                  5;
+        cost_factor:                    98;	//70;
+        running_cost_factor:            45;	//40;
+
+        sprite_id:			SPRITE_ID_NEW_ROADVEH;
+        speed:                          25 km/h;
+        misc_flags:                     bitmask(ROADVEH_FLAG_2CC);
+        refit_cost:                     0;
+        power:                          20 hp;
+        running_cost_base:              RUNNING_COST_ROADVEH;
+        weight:                         1.0 ton;
+
+	//engine_class:                   ENGINE_CLASS_ELECTRIC;
+	tractive_effort_coefficient:    0.3;
+	air_drag_coefficient:		0.32;
+	length:				5;
+	visual_effect:			visual_effect (VISUAL_EFFECT_DISABLE, 0);
+	sound_effect:                   SOUND_TRUCK_START;
+	default_cargo_type:		STEL;
+
+	//refittable_cargo_classes:       bitmask(CC_PASSENGERS);
+	//refittable_cargo_classes:       bitmask(CC_BULK);
+	//refittable_cargo_classes:       bitmask(CC_LIQUID);
+
+	//cargo_allow_refit:		FOOD, FRUT;
+	//cargo_disallow_refit:		IORE, GRAI,
+
+	cargo_capacity:			1;
+
+	}
+    graphics {
+        default: 		 	spritegroup_1917steel;
+	//articulated_part:             	switch_cpUaoos_articulated;
+	purchase:                     	spriteset_1917steelE_buy;
+	//speed:				cargo_amount_switch;
+    }
+}
+
+
+
+
+
+
+
+
+//----------------------------------------------- 1917 WOOD  -----------------------------------------
+item(FEAT_ROADVEHS, wood_1917) {
+    property {
+
+	name:				string(STR_GRF_NAME_1917WOOD);
+	climates_available:             bitmask(CLIMATE_TEMPERATE, CLIMATE_ARCTIC, CLIMATE_TROPICAL);
+        introduction_date:              date(1917,01,01);
+        model_life:                     15;
+        vehicle_life:                   30;
+
+        reliability_decay:              20;
+
+        loading_speed:                  5;
+        cost_factor:                    98;	//70;
+        running_cost_factor:            45;	//40;
+
+        sprite_id:			SPRITE_ID_NEW_ROADVEH;
+        speed:                          25 km/h;
+        misc_flags:                     bitmask(ROADVEH_FLAG_2CC);
+        refit_cost:                     0;
+        power:                          20 hp;
+        running_cost_base:              RUNNING_COST_ROADVEH;
+        weight:                         1.0 ton;
+
+	//engine_class:                   ENGINE_CLASS_ELECTRIC;
+	tractive_effort_coefficient:    0.3;
+	air_drag_coefficient:		0.32;
+	length:				5;
+	visual_effect:			visual_effect (VISUAL_EFFECT_DISABLE, 0);
+	sound_effect:                   SOUND_TRUCK_START;
+	default_cargo_type:		WOOD;
+
+	//refittable_cargo_classes:       bitmask(CC_PASSENGERS);
+	//refittable_cargo_classes:       bitmask(CC_BULK);
+	//refittable_cargo_classes:       bitmask(CC_LIQUID);
+
+	//cargo_allow_refit:		FOOD, FRUT;
+	//cargo_disallow_refit:		IORE, GRAI,
+
+	cargo_capacity:			1;
+
+	}
+    graphics {
+        default: 		 	spritegroup_1917wood;
+	//articulated_part:             	switch_cpUaoos_articulated;
+	purchase:                     	spriteset_1917woodE_buy;
+	//speed:				cargo_amount_switch;
+    }
+}
+
+
+
+
+
+
+//----------------------------------------------- 1917 COAL  -----------------------------------------
+item(FEAT_ROADVEHS, coal_1917) {
+    property {
+
+	name:				string(STR_GRF_NAME_1917COAL);
+	climates_available:             bitmask(CLIMATE_TEMPERATE, CLIMATE_ARCTIC, CLIMATE_TROPICAL);
+        introduction_date:              date(1917,01,01);
+        model_life:                     15;
+        vehicle_life:                   30;
+
+        reliability_decay:              20;
+
+        loading_speed:                  5;
+        cost_factor:                    98;	//70;
+        running_cost_factor:            45;	//40;
+
+        sprite_id:			SPRITE_ID_NEW_ROADVEH;
+        speed:                          25 km/h;
+        misc_flags:                     bitmask(ROADVEH_FLAG_2CC);
+        refit_cost:                     0;
+        power:                          20 hp;
+        running_cost_base:              RUNNING_COST_ROADVEH;
+        weight:                         1.0 ton;
+
+	//engine_class:                   ENGINE_CLASS_ELECTRIC;
+	tractive_effort_coefficient:    0.3;
+	air_drag_coefficient:		0.32;
+	length:				5;
+	visual_effect:			visual_effect (VISUAL_EFFECT_DISABLE, 0);
+	sound_effect:                   SOUND_TRUCK_START;
+	default_cargo_type:		COAL;
+
+	//refittable_cargo_classes:       bitmask(CC_PASSENGERS);
+	//refittable_cargo_classes:       bitmask(CC_BULK);
+	//refittable_cargo_classes:       bitmask(CC_LIQUID);
+
+	//cargo_allow_refit:		FOOD, FRUT;
+	//cargo_disallow_refit:		IORE, GRAI,
+
+	cargo_capacity:			1;
+
+	}
+    graphics {
+        default: 		 	spritegroup_1917coal;
+	//articulated_part:             	switch_cpUaoos_articulated;
+	purchase:                     	spriteset_1917coalE_buy;
+	//speed:				cargo_amount_switch;
+    }
+}
+
+
+
+
+
+
+
+
+
+//----------------------------------------------- 1917 IRON  -----------------------------------------
+item(FEAT_ROADVEHS, iron_1917) {
+    property {
+
+	name:				string(STR_GRF_NAME_1917IRON);
+	climates_available:             bitmask(CLIMATE_TEMPERATE, CLIMATE_ARCTIC, CLIMATE_TROPICAL);
+        introduction_date:              date(1917,01,01);
+        model_life:                     15;
+        vehicle_life:                   30;
+
+        reliability_decay:              20;
+
+        loading_speed:                  5;
+        cost_factor:                    98;	//70;
+        running_cost_factor:            45;	//40;
+
+        sprite_id:			SPRITE_ID_NEW_ROADVEH;
+        speed:                          25 km/h;
+        misc_flags:                     bitmask(ROADVEH_FLAG_2CC);
+        refit_cost:                     0;
+        power:                          20 hp;
+        running_cost_base:              RUNNING_COST_ROADVEH;
+        weight:                         1.0 ton;
+
+	//engine_class:                   ENGINE_CLASS_ELECTRIC;
+	tractive_effort_coefficient:    0.3;
+	air_drag_coefficient:		0.32;
+	length:				5;
+	visual_effect:			visual_effect (VISUAL_EFFECT_DISABLE, 0);
+	sound_effect:                   SOUND_TRUCK_START;
+	default_cargo_type:		IORE;
+
+	//refittable_cargo_classes:       bitmask(CC_PASSENGERS);
+	//refittable_cargo_classes:       bitmask(CC_BULK);
+	//refittable_cargo_classes:       bitmask(CC_LIQUID);
+
+	cargo_allow_refit:		[CORE,];
+	//cargo_disallow_refit:		IORE, GRAI,
+
+	cargo_capacity:			1;
+
+	}
+    graphics {
+        default: 		 	spritegroup_1917iron;
+	//articulated_part:             	switch_cpUaoos_articulated;
+	purchase:                     	spriteset_1917ironE_buy;
+	//speed:				cargo_amount_switch;
+    }
+}
+
+
+
+
+
+
+//----------------------------------------------- 1917 GRAIN  -----------------------------------------
+item(FEAT_ROADVEHS, grain_1917) {
+    property {
+
+	name:				string(STR_GRF_NAME_1917GRAIN);
+	climates_available:             bitmask(CLIMATE_TEMPERATE, CLIMATE_ARCTIC, CLIMATE_TROPICAL);
+        introduction_date:              date(1917,01,01);
+        model_life:                     15;
+        vehicle_life:                   30;
+
+        reliability_decay:              20;
+
+        loading_speed:                  5;
+        cost_factor:                    98;	//70;
+        running_cost_factor:            45;	//40;
+
+        sprite_id:			SPRITE_ID_NEW_ROADVEH;
+        speed:                          25 km/h;
+        misc_flags:                     bitmask(ROADVEH_FLAG_2CC);
+        refit_cost:                     0;
+        power:                          20 hp;
+        running_cost_base:              RUNNING_COST_ROADVEH;
+        weight:                         1.0 ton;
+
+	//engine_class:                   ENGINE_CLASS_ELECTRIC;
+	tractive_effort_coefficient:    0.3;
+	air_drag_coefficient:		0.32;
+	length:				5;
+	visual_effect:			visual_effect (VISUAL_EFFECT_DISABLE, 0);
+	sound_effect:                   SOUND_TRUCK_START;
+	default_cargo_type:		GRAI;
+
+	//refittable_cargo_classes:       bitmask(CC_PASSENGERS);
+	//refittable_cargo_classes:       bitmask(CC_BULK);
+	//refittable_cargo_classes:       bitmask(CC_LIQUID);
+
+	cargo_allow_refit:		[WHEA,];
+	//cargo_disallow_refit:		IORE, GRAI,
+
+	cargo_capacity:			1;
+
+	}
+    graphics {
+        default: 		 	spritegroup_1917grain;
+	//articulated_part:             	switch_cpUaoos_articulated;
+	purchase:                     	spriteset_1917grainE_buy;
+	//speed:				cargo_amount_switch;
+    }
+}
+
+
+
+
+
+
+
